@@ -11,18 +11,23 @@ import kotlinx.coroutines.launch
 
 class NumberViewModel (application: Application):AndroidViewModel(application){
     var repository:NumberRepository
-    var allNumbers:LiveData<List<Number>>
+    var allNumbers: LiveData<List<Number>>
 
 
     init {
-        val numberDao=NumberRoomDatabase.getDataBase(application,viewModelScope).NumberDao()
-        repository= NumberRepository(numberDao)
-        allNumbers=repository.allNumbers
+        val numberDao = NumberRoomDatabase.getDataBase(application, viewModelScope).NumberDao()
+        repository = NumberRepository(numberDao)
+        allNumbers = repository.allNumbers
 
     }
 
-    fun insert(number:Number)
-    {
+    fun delete(number: String) {
+        GlobalScope.launch {
+            repository.delete(number)
+        }
+    }
+
+    fun insert(number: Number) {
         Log.d(TAG, "insert: $number")
         GlobalScope.launch {
             repository.insert(number)

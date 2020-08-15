@@ -8,18 +8,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.number_adapter.view.*
 
 
 class NumberListAdapter internal constructor(
-    context: Context
+    context: Context, private val listener: onDelete
 ) : RecyclerView.Adapter<NumberListAdapter.NumberViewHolder>() {
     private val inflater = LayoutInflater.from(context)
     private var numbers = emptyList<Number>()
 
+    interface onDelete {
+        fun OnDelete(number: String)
+    }
+
     inner class NumberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val NumberItemView: TextView = itemView.findViewById(R.id.textView)
+        val delete = itemView.findViewById<ImageButton>(R.id.delete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NumberViewHolder {
@@ -36,13 +43,16 @@ class NumberListAdapter internal constructor(
         val current = numbers[position]
         holder.NumberItemView.text = current.number
 
-    holder.itemView.setOnClickListener {
-        val browserIntent =
-            Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/${holder.NumberItemView.text}"))
-        browserIntent.setPackage("com.whatsapp")
-        holder.itemView.context.startActivity(browserIntent)
-    }
-
+        holder.itemView.setOnClickListener {
+            val browserIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/${holder.NumberItemView.text}"))
+            browserIntent.setPackage("com.whatsapp")
+            holder.itemView.context.startActivity(browserIntent)
+        }
+        holder.delete.setOnClickListener {
+            val phoneNum = holder.NumberItemView.text
+            listener.OnDelete(phoneNum as String)
+        }
     }
 
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab
-        drawable="@drawable/ic_house"
+        drawable="@drawable/ic_phone"
         text="@string/home" />
 
     <tab
-        drawable="@drawable/ic_house"
-        text="@string/home"/>
+        drawable="@drawable/ic_clock"
+        text="@string/history" />
 
 
 </tabs>

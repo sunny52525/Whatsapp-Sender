@@ -6,7 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".MessageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Whatsapp Sender"
+        android:textColor="@color/colorPrimaryDark"
+
+        android:textSize="30sp"
+
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/phone_entry"
+        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="208dp"
+        android:layout_height="208dp"
+        app:layout_constraintBottom_toTopOf="@+id/phone_entry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/whatsapp">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/phone_entry"
         android:layout_width="0dp"
