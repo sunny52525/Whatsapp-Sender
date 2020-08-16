@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.iammert.library.readablebottombar.ReadableBottomBar
 import kotlinx.android.synthetic.main.activity_main.*
 

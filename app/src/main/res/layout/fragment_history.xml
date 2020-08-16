@@ -7,46 +7,73 @@
     tools:context=".FragmentHistory">
 
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
 
-            android:background="@color/colorPrimaryDark"
-            android:fontFamily="@font/autour_one"
-            android:paddingTop="10dp"
-            android:textColor="#000000"
-            android:paddingLeft="10dp"
-            android:text="History"
-            android:textSize="35sp"
-            app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/autour_one"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/history"
+        android:textColor="#000000"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="10dp"
+        tools:ignore="RtlSymmetry">
 
-        </TextView>
+    </TextView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/historyanim" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/empty_animation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationView3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:background="@color/colorPrimaryDark"
-            app:lottie_rawRes="@raw/historyanim" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="20dp"
+            android:layout_width="252dp"
+            android:layout_height="249dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/empty">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </com.airbnb.lottie.LottieAnimationView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
