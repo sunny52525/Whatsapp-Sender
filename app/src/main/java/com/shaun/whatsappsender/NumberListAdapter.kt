@@ -53,7 +53,7 @@ class NumberListAdapter internal constructor(
             browserIntent.setPackage("com.whatsapp")
             holder.itemView.context.startActivity(browserIntent)
         }
-        holder.delete.setOnClickListener {
+            holder.delete.setOnClickListener {
             val phoneNum = holder.NumberItemView.text
             listener.OnDelete(phoneNum as String)
         }

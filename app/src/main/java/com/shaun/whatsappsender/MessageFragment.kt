@@ -38,7 +38,7 @@ class MessageFragment : Fragment() {
                         phoneNumber="+91$phoneNumber"
                     }
                     val number=Number(phoneNumber)
-                    numberViewModel=ViewModelProvider(this).get(NumberViewModel::class.java)
+                    numberViewModel=ViewModelProvider(activity!!).get(NumberViewModel::class.java)
                       numberViewModel.insert(number)
                     val browserIntent =
                         Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/$phoneNumber"))

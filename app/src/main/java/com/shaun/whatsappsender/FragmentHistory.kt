@@ -24,11 +24,11 @@ class FragmentHistory : Fragment(), NumberListAdapter.onDelete {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
         val recycler = view?.findViewById<RecyclerView>(R.id.recycler_view)
-        val adapter = NumberListAdapter(context!!, this)
+        val adapter = NumberListAdapter(requireContext(), this)
         recycler?.layoutManager = LinearLayoutManager(context)
         recycler?.adapter = adapter
 
-        numberViewModel = ViewModelProvider(this).get(NumberViewModel::class.java)
+        numberViewModel = ViewModelProvider(requireActivity()).get(NumberViewModel::class.java)
         numberViewModel.allNumbers.observe(viewLifecycleOwner, Observer { ok ->
             ok?.let { adapter.setWords(it) }
         })
