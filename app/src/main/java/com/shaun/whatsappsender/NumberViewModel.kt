@@ -19,6 +19,8 @@ class NumberViewModel
     var allNumbers: LiveData<List<Number>>
     var fragNumber: MutableLiveData<Int> = MutableLiveData(0)
 
+    var number = ""
+
     init {
         Log.d(TAG, "Created: ")
         val numberDao = NumberRoomDatabase.getDataBase(context).NumberDao()

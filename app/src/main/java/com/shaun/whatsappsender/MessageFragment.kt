@@ -3,6 +3,8 @@ package com.shaun.whatsappsender
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,31 +23,58 @@ class MessageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // Inflate the layout for this fragment
-        val view= inflater.inflate(R.layout.fragment_message, container, false)
+            val view = inflater.inflate(R.layout.fragment_message, container, false)
 
 
+            numberViewModel = ViewModelProvider(requireActivity()).get(NumberViewModel::class.java)
 
+            val send = view.findViewById<Button>(R.id.send)
+            val phone_entry = view.findViewById<EditText>(R.id.phone_entry)
+            phone_entry.setText(numberViewModel.number)
 
+            phone_entry.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
-            val send=view.findViewById<Button>(R.id.send)
-            val phone_entry=view.findViewById<EditText >(R.id.phone_entry)
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    numberViewModel.number = s.toString()
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+
+                }
+
+            })
+
             send.setOnClickListener {
 
-                var phoneNumber=phone_entry.text.toString()
-                if(isValidNum(phoneNumber)){
-                    if (phoneNumber.length==10){
-                        phoneNumber="+91$phoneNumber"
+                var phoneNumber =
+                    phone_entry.text.toString().filter { it.isWhitespace().not() }.also {
+                        phone_entry.setText(it)
                     }
-                    val number=Number(phoneNumber)
-                    numberViewModel=ViewModelProvider(activity!!).get(NumberViewModel::class.java)
-                      numberViewModel.insert(number)
+                if (isValidNum(phoneNumber)) {
+                    if (phoneNumber.length == 10) {
+                        phoneNumber = "+91$phoneNumber"
+                    }
+
+                    val number = Number(phoneNumber)
+                    numberViewModel.insert(number)
                     val browserIntent =
                         Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/$phoneNumber"))
                     browserIntent.setPackage("com.whatsapp")
                     startActivity(browserIntent)
-                }else{
-                    Toast.makeText(context, "No", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        context,
+                        "Enter valid Number with country code",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 

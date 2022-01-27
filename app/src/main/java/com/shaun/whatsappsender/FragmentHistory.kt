@@ -29,12 +29,9 @@ class FragmentHistory : Fragment(), NumberListAdapter.onDelete {
         recycler?.adapter = adapter
 
         numberViewModel = ViewModelProvider(requireActivity()).get(NumberViewModel::class.java)
-        numberViewModel.allNumbers.observe(viewLifecycleOwner, Observer { ok ->
+        numberViewModel.allNumbers.observe(viewLifecycleOwner) { ok ->
             ok?.let { adapter.setWords(it) }
-        })
-
-
-
+        }
         return view
     }
 

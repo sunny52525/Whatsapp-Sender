@@ -57,7 +57,6 @@ class NumberListAdapter internal constructor(
             val phoneNum = holder.NumberItemView.text
             listener.OnDelete(phoneNum as String)
         }
-        setAnimation(holder.itemView, position)
     }
 
 
@@ -65,30 +64,10 @@ class NumberListAdapter internal constructor(
         this.numbers = numbers.reversed()
         if (numbers.isEmpty())
             listener.OnEmptty()
-
         notifyDataSetChanged()
     }
 
     private var lastPosition = -1
 
-    private fun setAnimation(viewToAnimate: View, position: Int) {
-        // If the bound view wasn't previously displayed on screen, it's animated
-        if (position > lastPosition) {
-            val anim = ScaleAnimation(
-                0.0f,
-                1.0f,
-                0.0f,
-                1.0f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f
-            )
-            val duration = Random(10).nextInt(501).toLong()
-            anim.duration = duration
-            viewToAnimate.startAnimation(anim)
-            lastPosition = position
-        }
-    }
 
 }
